@@ -1,0 +1,53 @@
+.dropdown-select {
+  width: auto;
+  float: none;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 50px;
+  border-radius: 5px;
+  /* position: absolute; */
+  top: 50%;
+  left: 50%;
+}
+
+.product_select .dropdown-select {
+  /* width: 33%;  */
+  padding: 0 25px;
+  /* position: relative; */
+}
+
+.pagination_wrapper ul.pagination li a {
+  color: #333;
+  cursor: pointer;
+}
+
+.pagination_wrapper ul.pagination li.active a {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.ads_fav_image {
+  transition: transform 0.3s ease-out;
+  width: 15%;
+  height: 15%;
+}
+
+.ads_fav_image:hover {
+  transform: scale(1.2);
+}
+
+.ads_fav_image_list {
+  transition: transform 0.3s ease-out;
+  width: 5%;
+  height: 5%;
+}
+
+.ads_fav_image_list:hover {
+  transform: scale(1.2);
+}
+
+.prod-img {
+  width: 250px !important;
+  height: 250px !important;
+  object-fit: cover;
+}

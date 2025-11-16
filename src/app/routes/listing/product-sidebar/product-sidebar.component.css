@@ -1,0 +1,53 @@
+.card {
+  border: 1px solid #ddd;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.card-header {
+  background: #f8f9fa;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.card-header:hover {
+  background: #e9ecef;
+}
+
+.card-body {
+  background: #fff;
+}
+
+.sidebar_categories_list li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.sidebar_categories_list li a:hover {
+  color: #007bff;
+}
+
+::ng-deep .ngx-slider .ngx-slider-pointer {
+  background-color: #007bff;
+}
+
+::ng-deep .ngx-slider .ngx-slider-selection {
+  background-color: #007bff;
+}
+
+::ng-deep .ngx-slider .ngx-slider-tick {
+  background-color: #ccc;
+}
+
+.sidebar_rating {
+  background-color: #fff;
+  padding: 10px 25px;
+  border-radius: 10px;
+  height: 100px;
+}
+
+.rating {
+  margin-right: 105px;
+}

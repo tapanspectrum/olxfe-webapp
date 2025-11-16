@@ -1,0 +1,50 @@
+<div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
+    <div class="product-item-inner border rounded">
+        <div class="product-item-inner-item">
+            <img [src]="item.images[0]" class="img-fluid w-100 rounded-top" [alt]="item.title" />
+            <div class="product-new" *ngIf="item.isNewAd">New</div>
+            <div class="product-details">
+                <a href="javascript:void(0);" (click)="onView()">
+                    <i class="fa fa-eye fa-1x"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="text-center rounded-bottom p-4">
+            <a href="#" class="d-block mb-2">{{ item.category }}</a>
+            <a href="#" class="d-block h4">{{ item.title }}</a>
+            <del *ngIf="item.oldPrice" class="me-2 fs-5">${{ item.oldPrice }}</del>
+            <span class="text-primary fs-5">${{ item.price }}</span>
+        </div>
+    </div>
+
+    <div class="product-item-add border border-top-0 rounded-bottom text-center p-4 pt-0">
+        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4">
+            <i class="fas fa-shopping-cart me-2"></i> Add To Cart
+        </a>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex">
+                <!-- <i class="fas fa-star text-primary" *ngFor="let s of item.avgRating"></i>
+                <i class="fas fa-star"></i> -->
+                <div class="stars">
+                    <ngx-star-rating [(ngModel)]="item.avgRating" [id]="'rating'" [disabled]="false"></ngx-star-rating>
+                </div>
+
+            </div>
+
+            <div class="d-flex">
+                <a href="#" class="text-primary me-3">
+                    <span class="rounded-circle btn-sm-square border">
+                        <i class="fas fa-random"></i>
+                    </span>
+                </a>
+                <a href="#" class="text-primary">
+                    <span class="rounded-circle btn-sm-square border">
+                        <i class="fas fa-heart"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

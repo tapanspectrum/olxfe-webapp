@@ -1,0 +1,13 @@
+<div class="layout-container" [ngClass]="'containerClass'">
+    <header class="header_area">
+        <tap-navbar></tap-navbar>
+        <tap-topbar></tap-topbar>
+    </header>
+    <div class="layout-content-wrapper">
+        <div class="layout-content">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="layout-mask"></div>
+    </div>
+    <tap-footer></tap-footer>
+</div>

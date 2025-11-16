@@ -1,0 +1,149 @@
+<!--====== HEADER PART START ======-->
+
+<header class="header_area">
+
+    <div class="header_navbar">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/img/logo-img.png" alt="logo">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                    <!-- <ul class="navbar-nav m-auto">
+                            <li>
+                                <a class="active" href="index.html">Home <span class="line"></span></a>
+                            </li>
+                        </ul> -->
+                </div>
+
+                <div class="navbar_btn">
+                    <ul>
+                        <li *ngIf="isLogin && isAuth">
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">My Account</a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <ul>
+                                        <li><a href="dashboard.html"><i class="fal fa-tachometer-alt-average"></i>
+                                                Dashboard</a></li>
+                                        <li><a href="profile-settings.html"><i class="fal fa-cog"></i> Profile
+                                                Settings</a></li>
+                                        <li><a href="my-ads.html"><i class="fal fa-layer-group"></i> My Ads</a></li>
+                                        <li><a href="offermessages.html"><i class="fal fa-envelope"></i>
+                                                Offers/Messages</a></li>
+                                        <li><a href="payments.html"><i class="fal fa-wallet"></i> Payments</a></li>
+                                        <li><a href="favourite-ads.html"><i class="fal fa-heart"></i> My Favourites</a>
+                                        </li>
+                                        <li><a href="privacy-setting.html"><i class="fal fa-star"></i> Privacy
+                                                Settings</a></li>
+                                        <li><a href="#"><i class="fal fa-sign-out"></i> Sign Out</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <!-- <a class="sign-up" href="post-ads.html">Post Ads</a> -->
+                            <a class="sign-up main-btn main-btn-2" href="javascript:void(0)" (click)="openLoginModal()">
+                                Post an Ad
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="header_content bg_cover" style="background-image: url(assets/images/hero.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="content_wrapper">
+                        <h3 class="title">Welcome to ClassiFied</h3>
+                        <p>Buy And Sell Everything From Used Cars To Mobile Phones And Computers, Or Search For
+                            Property, Jobs And More. Lorem Ipsum is simply dummy text of the printing and typesetting
+                            industry</p>
+                        <ul class="header_btn">
+                            <li><a class="main-btn" href="javascript:void(0)" (click)="openLoginModal()">Browse Ads</a>
+                            </li>
+                            <li>
+                                <a class="main-btn main-btn-2" href="javascript:void(0)" (click)="openLoginModal()">
+                                    Post an Ad
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="header_search">
+                <div>
+                    <div class="search_wrapper d-flex flex-wrap">
+                        <div class="search_column d-flex flex-wrap">
+                            <div class="search_select mt-15">
+                                <!-- <select class="dropdown-select">
+                                    <option value="0">Select a Location</option>
+                                    <option value="1">Some option</option>
+                                    <option value="2">Another option</option>
+                                    <option value="4">Potato</option>
+                                </select> -->
+                                <select class="dropdown-select" [(ngModel)]="selectedLocation">
+                                    <option value="">Select a Location</option>
+                                    <option *ngFor="let loc of ['India', 'China']" [value]="loc">
+                                        {{ loc }}
+                                    </option>
+                                </select>
+                                <i class="far fa-map-marker-alt"></i>
+                            </div>
+                            <div class="search_select mt-15">
+                                <select class="dropdown-select" [(ngModel)]="selectedCategory">
+                                    <option value="">Select a Category</option>
+                                    <option *ngFor="let cat of dropdownData" [value]="cat">
+                                        {{ cat }}
+                                    </option>
+                                </select>
+                                <i class="far fa-tags"></i>
+                            </div>
+                        </div>
+                        <div class="search_column d-flex flex-wrap">
+                            <div class="search_form mt-15">
+                                <input type="text" placeholder="Type Your Keyword" [(ngModel)]="selectedKeyword" />
+                                <i class="far fa-i-cursor"></i>
+                            </div>
+                            <div class="search_btn mt-15">
+                                <button class="main-btn" (click)="searchFilterData(selectedLocation,selectedCategory,selectedKeyword)">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header_keyword d-sm-flex">
+                    <span class="title">
+                        <b>Trending Keywords:</b>
+                    </span>
+                    <ul class="tags media-body">
+                        <!-- <li><a href="#">Camera</a></li>
+                        <li><a href="#">Mobile</a></li>
+                        <li><a href="#">DSLR</a></li>
+                        <li><a href="#">Packet</a></li>
+                        <li><a href="#">Dress</a></li>
+                        <li><a href="#">Shirt</a></li>
+                        <li><a href="#">Pant</a></li>
+                        <li><a href="#">Shoe</a></li>
+                        <li><a href="#">Table</a></li> -->
+                        <li *ngFor="let keyword of treandingKeywords; let i = index;"><a href="javascript:void(0)">{{ keyword }}<span *ngIf="i !== treandingKeywords.length - 1">,</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!--====== HEADER PART ENDS ======-->

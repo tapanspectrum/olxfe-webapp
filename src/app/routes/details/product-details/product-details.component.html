@@ -1,0 +1,123 @@
+<section class="product_details_page" *ngIf="product">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="product_details mt-50">
+          <div class="product_image">
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="details-1"
+                role="tabpanel"
+              >
+                <img [src]="product.images[0]" alt="{{ product.title }}" />
+                <ul class="sticker">
+                  <li *ngIf="product.condition === 'New'">New</li>
+                  <li *ngIf="product.authenticity === 'Original'">Featured</li>
+                </ul>
+              </div>
+            </div>
+            <ul class="nav" id="myTab" role="tablist">
+              <li
+                class="nav-item"
+                *ngFor="let img of product.images; let i = index"
+              >
+                <a
+                  [class.active]="i === 0"
+                  data-toggle="tab"
+                  [href]="'#details-' + (i + 1)"
+                  role="tab"
+                >
+                  <img [src]="img" [alt]="product.title" />
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="product_details_meta d-sm-flex justify-content-between align-items-end"
+          >
+            <div class="product_price">
+              <span class="price">${{ product.price }}</span>
+              <p *ngIf="product.negotiable">Negotiable</p>
+            </div>
+            <div class="product_date">
+              <ul class="meta">
+                <li>
+                  <i class="fa fa-clock-o"></i>
+                  <a href="#">{{ product.createdAt }}</a>
+                </li>
+                <li>
+                  <i class="fa fa-eye"></i>
+                  <a href="#">{{ product.views }} VIEWS</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="product_details_features">
+            <div class="product_details_title">
+              <h5 class="title">Features :</h5>
+            </div>
+            <div class="details_features_wrapper d-flex flex-wrap">
+              <div class="single_features d-flex">
+                <h6 class="features_title">Brand :</h6>
+                <p>{{ product.brand }}</p>
+              </div>
+              <div class="single_features d-flex">
+                <h6 class="features_title">Condition :</h6>
+                <p>{{ product.condition }}</p>
+              </div>
+              <div class="single_features d-flex">
+                <h6 class="features_title">Authenticity :</h6>
+                <p>{{ product.authenticity }}</p>
+              </div>
+              <div class="single_features d-flex">
+                <h6 class="features_title">Features :</h6>
+                <!-- <p class="media-body">{{ product.features.join(', ') }}</p> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="product_details_description">
+            <div class="product_details_title">
+              <h5 class="title">Description :</h5>
+            </div>
+            <p>{{ product.description }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="product_details_sidebar pt-20">
+          <div class="product_sidebar_owner mt-30">
+            <div class="product_details_title">
+              <h5 class="title">Ad Owner :</h5>
+            </div>
+            <div class="owner_author d-flex align-items-center">
+              <div class="author_image">
+                <img src="assets/images/author-2.jpg" alt="owner" />
+              </div>
+              <div class="author_content media-body">
+                <h5 class="author_name">{{product?.owner?.name}}</h5>
+                <p>Member Since 2014</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="product_sidebar_map mt-30">
+            <div class="product_details_title">
+              <h5 class="title">Location Map :</h5>
+            </div>
+            <div class="gmap_canvas">
+              <iframe
+                id="gmap_canvas"
+                src="https://maps.google.com/maps?q=New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

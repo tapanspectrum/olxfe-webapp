@@ -1,0 +1,81 @@
+<div class="product_sidebar pt-20">
+    <!-- CATEGORIES -->
+    <div class="sidebar_categories mt-30" *ngIf="categories.length">
+        <div class="sidebar_title">
+            <h5 class="title">Categories</h5>
+        </div>
+        <div class="sidebar_categories_content">
+            <div class="accordion" id="accordionExample">
+                <div class="card" *ngFor="let cat of categories; let i = index">
+                    <div class="card-header" [id]="'heading' + i">
+                        <a href="javascript:void(0)" class="d-flex align-items-center" (click)="toggleAccordion(i)">
+                            <img [src]="cat.icon" alt="Icon" width="20" class="me-2">
+                            <span>{{ cat.name }} ({{ cat.count }})</span>
+                            <i class="ms-auto"
+                                [ngClass]="{'bi-chevron-up': activeIndex === i, 'bi-chevron-down': activeIndex !== i}"></i>
+                        </a>
+                    </div>
+
+                    <div [id]="'collapse' + i" class="collapse" [ngClass]="{'show': activeIndex === i}"
+                        [attr.aria-labelledby]="'heading' + i">
+                        <div class="card-body">
+                            <ul class="sidebar_categories_list list-unstyled mb-0">
+                                <li *ngFor="let sub of cat.subcategories">
+                                    <a [routerLink]="sub.link" class="d-block py-1">{{ sub.name }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRICE RANGE -->
+    <div class="sidebar_price_range mt-30">
+        <div class="sidebar_title">
+            <h5 class="title">Price Range</h5>
+        </div>
+        <div class="price_range_content">
+            <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options">
+            </ngx-slider>
+        </div>
+    </div>
+
+    <!-- TOP DEALS -->
+    <div class="sidebar_discount mt-30">
+        <div class="sidebar_title">
+            <h5 class="title">Top Deals</h5>
+        </div>
+        <ul class="discount_radio">
+            <li *ngFor="let deal of topDeals">
+                <input type="radio" name="deal" [id]="deal.value" [value]="deal.value" [(ngModel)]="selectedDeal"
+                    class="mr-3">
+                <label [for]="deal.value"></label>
+                <span>{{ deal.label }}</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- RATINGS -->
+    <div class="sidebar_rating mt-30">
+        <div class="sidebar_title">
+            <h5 class="title">Ratings</h5>
+        </div>
+        <!-- <ul class="rating_checkbox">
+            <li *ngFor="let r of ratings; let j = index">
+                <input type="checkbox" [id]="'rating' + j">
+                <label [for]="'rating' + j"></label>
+                <span>
+                    <i *ngFor="let s of [].constructor(r.stars)" class="fas fa-star"></i>
+                    <i *ngFor="let s of [].constructor(5 - r.stars)" class="fal fa-star"></i>
+                </span>
+                <span class="count">({{ r.count }})</span>
+            </li>
+        </ul> -->
+        <div class="rating">
+            <ngx-star-rating [(ngModel)]="rating" [id]="'rating1'" [disabled]="false">
+            </ngx-star-rating>
+        </div>
+    </div>
+</div>

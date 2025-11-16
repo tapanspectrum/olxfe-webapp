@@ -1,0 +1,136 @@
+<section class="product_page pt-70 pb-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <tap-product-sidebar [categories]="categoryList">
+                </tap-product-sidebar>
+            </div>
+            <div class="col-lg-9">
+                <!-- Topbar -->
+                <div class="product_topbar d-md-flex align-items-center justify-content-between pb-30">
+                    <div class="product_select pt-40 d-flex flex-wrap">
+                        <select class="dropdown-select mr-3" [(ngModel)]="selectedSort">
+                            <option *ngFor="let opt of sortOptions" [value]="opt">{{ opt }}</option>
+                        </select>
+                        <select class="dropdown-select mr-3" [(ngModel)]="selectedLocation">
+                            <option *ngFor="let opt of locationOptions" [value]="opt">{{ opt }}</option>
+                        </select>
+                        <select class="dropdown-select mr-3" [(ngModel)]="selectedItemCount">
+                            <option *ngFor="let opt of itemCountOptions" [value]="opt">{{ opt }}</option>
+                        </select>
+                    </div>
+
+                    <div class="product_tab_menu mt-50">
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item">
+                                <a (click)="viewMode='grid'" [class.active]="viewMode==='grid'"><i
+                                        class="fal fa-th"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a (click)="viewMode='list'" [class.active]="viewMode==='list'"><i
+                                        class="fal fa-th-list"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tab Content -->
+                <div [ngSwitch]="viewMode">
+                    <!-- GRID VIEW -->
+                    <div *ngSwitchCase="'grid'" class="product_grid">
+                        <div class="row">
+                            <div class="col-xl-4 col-sm-6" *ngFor="let product of pagedProducts">
+                                <div class="single_ads_card mt-30">
+                                    <div class="ads_card_image">
+                                        <img [src]="product.images[0]" [alt]="product.title">
+                                    </div>
+                                    <div class="ads_card_content">
+                                        <div class="meta d-flex justify-content-between">
+                                            <p>{{ product.category }}</p>
+                                            <!-- <a class="like" href="#"><i class="fal fa-heart"></i></a> -->
+                                            <!-- ddd <i class="fa-regular fa-heart"></i> dd -->
+                                            <!-- <a class="like" href="javascript:void(0)" (click)="toggleFavorite()">
+                                                <i class="fa"
+                                                    [ngClass]="product?.isFavorited ? 'fa-regular fa-heart' : 'fa-regular fa-heart'"></i>
+                                            </a> -->
+                                            <img *ngIf="product?.isFavorited" (click)="toggleFavorite()"
+                                                src="assets/img/heart-fill.png" class="ads_fav_image">
+                                            <img *ngIf="!product?.isFavorited" (click)="toggleFavorite()"
+                                                src="assets/img/heart-outline.png" class="ads_fav_image">
+                                        </div>
+                                        <h4 class="title"><a [routerLink]="['/product', product._id]">{{ product.title
+                                                }}</a></h4>
+                                        <p *ngIf="product.location"><i class="far fa-map-marker-alt"></i>{{
+                                            product.location }}</p>
+                                        <div class="ads_price_date d-flex justify-content-between">
+                                            <span class="price">${{ product?.price }}</span>
+                                            <span class="date">{{ product?.description }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LIST VIEW -->
+                    <div *ngSwitchCase="'list'" class="product_list">
+                        <div class="single_ads_card ads_list d-sm-flex mt-30" *ngFor="let product of pagedProducts">
+                            <div class="ads_card_image">
+                                <img [src]="product.images[0]" [alt]="product.title" class="prod-img">
+                            </div>
+                            <div class="ads_card_content media-body">
+                                <div class="meta d-flex justify-content-between">
+                                    <p>{{ product.category }}</p>
+                                    <!-- isFavorited
+                                    <a class="like" href="#"><i class="fa fa-heart"></i></a> -->
+                                    <img *ngIf="product?.isFavorited" (click)="toggleFavorite()"
+                                        src="assets/img/heart-fill.png" class="ads_fav_image_list">
+                                    <img *ngIf="!product?.isFavorited" (click)="toggleFavorite()"
+                                        src="assets/img/heart-outline.png" class="ads_fav_image_list">
+                                </div>
+                                <h4 class="title"><a [routerLink]="['/product', product._id]">{{ product.title }}</a>
+                                </h4>
+                                <p><i class="far fa-map-marker-alt"></i>{{ product.location }}</p>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor.</p>
+                                <div class="ads_price_date d-flex justify-content-between">
+                                    <span class="price">${{ product.price }}</span>
+                                    <span class="date">{{ product.date }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <!-- Pagination -->
+                <div class="pagination_wrapper mt-50" *ngIf="totalPages > 1">
+                    <ul class="pagination justify-content-center">
+
+                        <!-- Previous Button -->
+                        <li class="page-item" [class.disabled]="currentPage === 1">
+                            <a class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
+                                <i class="fal fa-angle-left"></i>
+                            </a>
+                        </li>
+
+                        <!-- Page Numbers -->
+                        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+                            [class.active]="i + 1 === currentPage">
+                            <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+                        </li>
+
+                        <!-- Next Button -->
+                        <li class="page-item" [class.disabled]="currentPage === totalPages">
+                            <a class="page-link" (click)="changePage(currentPage + 1)" aria-label="Next">
+                                <i class="fal fa-angle-right"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

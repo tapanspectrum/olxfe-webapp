@@ -1,0 +1,28 @@
+<section class="category_area pt-115">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="section_title">
+          <h3 class="title">Popular <br> Categories</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="category_wrapper d-flex flex-wrap justify-content-center pt-30">
+      <div class="category-column" *ngFor="let cat of categories">
+        <div class="single_category text-center mt-30" (click)="goToCategory(cat)">
+          <div class="icon">
+            <i [class]="cat.icon"></i>
+          </div>
+          <div class="content">
+            <h6 class="title">{{ cat.title }}</h6>
+          </div>
+        </div>
+      </div>
+
+      <div class="category_btn">
+        <a class="main-btn" routerLink="/product/listing">View all Categories</a>
+      </div>
+    </div>
+  </div>
+</section>
