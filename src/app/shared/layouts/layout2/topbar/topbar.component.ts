@@ -21,12 +21,10 @@ export class TopbarComponent {
 
   constructor(private modelService: NgbModal, private services: ModalService, private service: ListingService) {
     this.service.getFilterDropDownData().subscribe((res) => {
-      console.log('Dropdown Data:', res);
       this.dropdownData = res;
     });
 
     this.service.getTrendingKeywords().subscribe((res) => {
-      console.log('Trending Keywords:', res);
       this.treandingKeywords = res;
     });
   }
