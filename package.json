@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "prestart": "npm i --legacy-peer-deps",
     "start": "ng serve --port 4401 --open",
     "dev": "ng serve --port 4401 --open",
     "build": "ng build",
